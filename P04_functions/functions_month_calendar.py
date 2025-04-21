@@ -20,4 +20,29 @@ month_names = [
     "November",
     "December",
 ]
-my_date = date(2021, 12, 1)
+
+def print_month_calendar(year, month):
+    my_date = date(year, month, 1)
+    days_in_month = monthrange(my_date.year, my_date.month)[1]
+    day_of_week = my_date.weekday() + 1
+
+    print(f" > {month_names[month]} {year} <")
+    print(" Mon Tue Wed Thu Fri Sat Sun")
+    print("    "*(day_of_week-1), end="")
+
+    for day in range(1, days_in_month + 1):
+        print(f"{day:4d}", end= "")
+
+        if (day_of_week + day -1) % 7 == 0:
+            print()
+            
+    if (day_of_week + days_in_month - 1) % 7 != 0:
+        print()
+
+def main():
+    input_year = int(input("Enter year: "))
+    input_month = int(input("Enter month: "))
+    print()
+    print_month_calendar(input_year, input_month)
+
+main()

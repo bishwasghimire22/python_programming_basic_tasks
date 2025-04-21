@@ -12,15 +12,36 @@
 #  Then the main function should print the integer and either the text "is a circular prime" or "is not a circular prime".
 # The main function should call the is_circular_prime function to determine if a number is a circular prime or not.
 
+def is_prime(i: int) -> bool:
+    if i < 2:
+        return False
+    for num in range(2, int(i**0.5)+1):
+        if i % num == 0:
+            return False
+    return True
 
-def is_Prime(i: int):
 
-    pass
+def is_circular_prime(i: int) -> bool:
+    string_i = str(i)
+    length = len(string_i)
 
-
-def is_circular_prime():
-    pass
-
+    for j in range(length):
+        rotated_str = string_i[j:] + string_i[:j]
+        rotated_num = int(rotated_str)
+        if not is_prime(rotated_num):
+            return False
+    return True
 
 def main():
-    pass
+ 
+    number = int(input("Enter a positive integer: "))
+    
+    
+    if is_circular_prime(number):
+        print(f"{number} is a circular prime")
+    else:
+        print(f"{number} is not a circular prime")
+
+
+main()
+
